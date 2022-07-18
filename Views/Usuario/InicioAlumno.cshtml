@@ -1,0 +1,50 @@
+﻿
+
+<div class="d-flex justify-content-center">
+    <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
+        <form asp-action="Lunes">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Lunes</button>
+            </div>
+        </form>
+        <form asp-action="Martes">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Martes</button>
+            </div>
+        </form>
+        <form asp-action="Miercoles">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Miércoles</button>
+            </div>
+        </form>
+        <form asp-action="Jueves">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Jueves</button>
+            </div>
+        </form>
+        <form asp-action="Viernes">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Viernes</button>
+            </div>
+        </form>
+        <div class="btn-group">
+            <button asp-action=Lunes type="button" onclick="Render" class="btn btn-outline-info ">Lunes prueba</button>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+        <button>Salir</button>
+    </div>
+
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1 class=" align-content-center align-self-center d-flex justify-content-center">TABLA</h1>
+<h1 class=" align-content-center align-self-center d-flex justify-content-center">@ViewBag.Prueba</h1>
+
+

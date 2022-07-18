@@ -25,6 +25,50 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexLogin">Ingresar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexRegistro">Registrarse</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="__Prueba">Registrarse</a>
+                        </li>
+                        @*{
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexLogin">Ingresar</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexRegistro">Registrarse</a>
+                        </li>
+                        }*@
+
+                        @*@if(Model == null)
+                        {
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexLogin">Model</a>
+                        </li>
+                        }
+
+                        @if (Context.Request.Cookies["user_id"] == null )
+                        {
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexLogin">Cookie</a>
+                        </li>
+                        }
+
+                        @if (TempData["UsuarioActual"] == null) //si actualizo esto se pierde
+                        {
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="IndexLogin">TempData</a>
+                        </li>
+                        }*@
+
+                        @*ninguno de los dos me funciona *@
+
+
                     </ul>
                 </div>
             </div>

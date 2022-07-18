@@ -6,15 +6,17 @@ namespace KadabraMVC.Controllers
 {
     public class HomeController : Controller
     {
+        #region Default
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            
         }
 
         public IActionResult Index()
-        {
+        {            
             return View();
         }
 
@@ -28,5 +30,8 @@ namespace KadabraMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        #endregion 
+
+        
     }
 }

@@ -1,0 +1,34 @@
+﻿@using KadabraMVC.Models
+@model List<Usuario> //Profesores
+
+<h1>Usuarios</h1>
+<table class="table">
+    <thead>
+        <tr class="">
+            <th>Nombre</th>
+            <th>Fecha de Registro</th>
+            <th>Historial</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var profesor in @Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m=>profesor.Nombre) @Html.DisplayFor(m=>profesor.Apellido)</td>
+                <td>@Html.DisplayFor(m=>profesor.FechaDeAlta)</td>
+                <td> <input class="btn btn-outline-info" type="button" value="Detalle" /> </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end">
+    <button class="btn btn-info">Agregar Profesor</button>
+</div>
+
+<hr />
+<br />
+<h1>Posibilidades</h1>
+<p>Aca puedo hacer que aparezca una ventana modal y tome los datos</p>
+<p>Sino que te lleve a otra ventana con un formulario de carga y nv</p>

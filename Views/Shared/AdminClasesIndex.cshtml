@@ -1,0 +1,84 @@
+﻿@using KadabraMVC.Models
+@model List<Clase>
+
+<h1>Clases</h1>
+
+<div class="d-flex justify-content-center">
+    <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
+        <form asp-action="Lunes">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Lunes</button>
+            </div>
+        </form>
+        <form asp-action="Martes">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Martes</button>
+            </div>
+        </form>
+        <form asp-action="Miercoles">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Miércoles</button>
+            </div>
+        </form>
+        <form asp-action="Jueves">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Jueves</button>
+            </div>
+        </form>
+        <form asp-action="Viernes">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-info ">Viernes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Turno</th>
+            <th>Profesor</th>
+            <th>Capacidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var clase in Model)
+        {
+            <tr>
+                @{
+
+                    string Fecha = clase.HorarioClase.Day.ToString() + "/" + clase.HorarioClase.Month.ToString();
+                    string Hora = clase.HorarioClase.Hour.ToString() + ":00";
+                }
+                <td>@Fecha</td>
+                <td>@Hora</td>
+
+
+                <td>@Html.DisplayFor(m=>clase.IdProfesor)</td>
+                <td>@Html.DisplayFor(m=>clase.Capacidad)</td>
+
+
+
+                <td>
+                    <input class="btn btn-outline-info" type="button" value="Editar" />
+                    <input class="btn btn-outline-info" type="button" value="Dar de baja" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<div class="d-flex justify-content-end">
+    <form asp-action="FormAdminAddClase" asp-controller="Clase">
+        <button class="btn btn-info">Agregar Clase</button>
+    </form>
+</div>
+
+
