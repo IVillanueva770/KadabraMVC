@@ -114,6 +114,8 @@ namespace KadabraMVC.Models
 
                 entity.Property(e => e.IdClase).HasColumnName("idClase");
 
+                entity.Property(e => e.Capacidad).HasDefaultValueSql("((20))");
+
                 entity.Property(e => e.Estado)
                     .HasMaxLength(1)
                     .IsUnicode(false);

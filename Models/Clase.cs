@@ -10,10 +10,6 @@ namespace KadabraMVC.Models
             AnotacionAclases = new HashSet<AnotacionAclase>();
             Asistencia = new HashSet<Asistencia>();
             RegistroDeClases = new HashSet<RegistroDeClase>();
-               
-            //dudoso
-            //Fecha = HorarioClase.Date;
-            //Hora = HorarioClase.Hour.ToString("hh:mm");
         }
 
         public int IdClase { get; set; }
@@ -21,10 +17,6 @@ namespace KadabraMVC.Models
         public DateTime HorarioClase { get; set; }
         public string? Estado { get; set; }
         public int Capacidad { get; set; }
-
-        //dudoso
-        //public String? Fecha { get; set; }
-        //public string? Hora { get; set; } //estos dos no es valido agregarlos así
 
         public virtual Usuario? IdProfesorNavigation { get; set; }
         public virtual ICollection<AnotacionAclase> AnotacionAclases { get; set; }

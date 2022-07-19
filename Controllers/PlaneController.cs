@@ -1,5 +1,6 @@
 ﻿using KadabraMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace KadabraMVC.Controllers
 {
@@ -14,6 +15,14 @@ namespace KadabraMVC.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+
+        public async Task<IActionResult> AdminPlanesIndex()
+        {
+            var Planes = await _context.Planes.ToListAsync();
+
+            return View(Planes);
         }
     }
 }

@@ -50,7 +50,6 @@
         {
             <tr>
                 @{
-
                     string Fecha = clase.HorarioClase.Day.ToString() + "/" + clase.HorarioClase.Month.ToString();
                     string Hora = clase.HorarioClase.Hour.ToString() + ":00";
                 }
@@ -74,11 +73,22 @@
 
 
 
-
-<div class="d-flex justify-content-end">
-    <form asp-action="FormAdminAddClase" asp-controller="Clase">
-        <button class="btn btn-info">Agregar Clase</button>
+<div class="table">
+    <form asp-action="InicioAdministrativo" asp-controller="Usuario">
+        <div class="d-flex justify-content-start">
+            <button class="btn btn-outline-info">Volver</button>
+        </div>
     </form>
+
+
+    <div class="d-flex justify-content-end">
+        <form asp-action="FormAdminAddClase" asp-controller="Clase">
+            <button class="btn btn-info">Agregar Clase</button>
+        </form>
+    </div>
 </div>
+
+
+
 
 

@@ -15,15 +15,15 @@ namespace KadabraMVC.Controllers
         {
             _context = context;
         }
+
+        #region LoginYRegistro
         public IActionResult IndexLogin()
         {
             return View();
         }
 
-
-
         [ValidateAntiForgeryToken]
-        public ActionResult ConsultarCredenciales(LoginViewModel model)
+        public IActionResult ConsultarCredenciales(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -70,19 +70,40 @@ namespace KadabraMVC.Controllers
 
                 }
             }
-            @ViewBag.UsuariosLoggeados = 0;
-            return Redirect(nameof(Index));
+
+            return Redirect(nameof(IndexLogin));
         }
 
-        public ActionResult IndexRegistro(LoginViewModel model)
+        #region Login_VistasSegunTipoUsuario
+        public IActionResult InicioAdministrativo()
         {
             return View();
         }
 
-        public async Task<ActionResult> RegistrarAlumno(RegistroViewModel model) //esto es lo que pasa cuando aprieta el botón Registrarme
+        public IActionResult InicioAlumno()
+        {
+            return View();
+        }
+
+        public IActionResult InicioProfesor()
+        {
+            return View();
+        }
+        public IActionResult UsuarioSinTipo()
+        {
+            return View();
+        }
+        #endregion
+        public IActionResult IndexRegistro(LoginViewModel model)
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> RegistrarAlumno(RegistroViewModel model) //esto es lo que pasa cuando aprieta el botón Registrarme
         {
             if (!ModelState.IsValid)
             {
+
                 return View();
             }
 
@@ -105,85 +126,107 @@ namespace KadabraMVC.Controllers
 
         }
 
-        #region VistasSegunTipoUsuario
-        public ActionResult InicioAdministrativo()
-        {
-            return View();
-        }
-
-        public ActionResult InicioAlumno()
-        {
-            return View();
-        }
-
-        public ActionResult InicioProfesor()
-        {
-            return View();
-        }
-        public ActionResult UsuarioSinTipo()
-        {
-            return View();
-        }
         #endregion
 
-        #region DiasSemana
-        public void Lunes()
-        {
-            ViewBag.Prueba = "Lunes";
-        }
+        //#region DiasSemana
+        //public void Lunes()
+        //{
+        //    ViewBag.Prueba = "Lunes";
+        //}
 
-        public void Martes()
-        {
-            ViewBag.Prueba = "Martes";
-        }
+        //public void Martes()
+        //{
+        //    ViewBag.Prueba = "Martes";
+        //}
 
-        public void Miercoles()
-        {
-            ViewBag.Prueba = "Miercoles";
-        }
+        //public void Miercoles()
+        //{
+        //    ViewBag.Prueba = "Miercoles";
+        //}
 
-        public void Jueves()
-        {
-            ViewBag.Prueba = "Jueves";
-        }
+        //public void Jueves()
+        //{
+        //    ViewBag.Prueba = "Jueves";
+        //}
 
-        public void Viernes()
-        {
-            ViewBag.Prueba = "Viernes";
-        }
-        #endregion
+        //public void Viernes()
+        //{
+        //    ViewBag.Prueba = "Viernes";
+        //}
+        //#endregion
 
-        #region VistasDePrueba
-        public ActionResult NegativoVistaDePrueba()
-        {
-            return View();
-        }
+        //#region VistasDePrueba
+        //public IActionResult NegativoVistaDePrueba()
+        //{
+        //    return View();
+        //}
 
-        public ActionResult PositivoVistaDePrueba()
-        {
-            return View();
-        }
-        #endregion
+        //public IActionResult PositivoVistaDePrueba()
+        //{
+        //    return View();
+        //}
+        //#endregion
 
-        public async Task<ActionResult> AdminProfesoresIndex()
+        #region AdminProfesores
+        public async Task<IActionResult> AdminProfesoresIndex()
         {
             var Profesores = await _context.Usuarios.Where(m => m.Tipo == "Profesor").ToListAsync();
             return View(Profesores);
         }
 
-        public async Task<ActionResult> AdminClasesIndex()
-        {
-            var Clases = await _context.Clases.ToListAsync();
-            return View(Clases);
-        }
-        public ActionResult AdminAlumnosIndex()
+        public IActionResult formNuevoProfesor()
         {
             return View();
         }
-        public ActionResult AdminArancelesIndex()
+
+        public async Task<IActionResult> RegistrarProfesor(RegistroViewModel model) //esto es lo que pasa cuando aprieta el botón Registrar nuevo profesor
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+
+                return View();
+            }
+
+            var NuevoUsuario = new Usuario()
+            {
+                Nombre = model.Nombre,
+                Apellido = model.Apellido,
+                Dni = model.Dni,
+                Telefono = model.Telefono,
+                Direccion = model.Direccion,
+                Mail = model.Mail,
+                Contraseña = model.Contraseña,
+                ClasesRestantes = 0,
+                Tipo = "Profesor"
+            };
+
+            _context.Add(NuevoUsuario);
+            await _context.SaveChangesAsync();
+            return Redirect(nameof(AdminProfesoresIndex));
+
         }
+        #endregion
+
+        public async Task<IActionResult> AdminAlumnosIndex()
+        {
+            var Alumnos = await _context.Usuarios.Where(m => m.Tipo == "Alumno").ToListAsync();
+            return View(Alumnos);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -195,12 +238,12 @@ namespace KadabraMVC.Controllers
 
 //Estaba en AdminClasesIndex
 //Esto es un intento de hacer que en la tabla de Clases aparezca el nombre del profesor y no el ID. 
-            //foreach (var clase in Clases)
-            //{
-            //    int? idProf = clase.IdProfesor;
-            //    var profesor = from p in _context.Usuarios
-            //                     where p.IdUsuario == idProf
-            //                     select p;
-            //    string NombreProf = profesor.First().Nombre;
+//foreach (var clase in Clases)
+//{
+//    int? idProf = clase.IdProfesor;
+//    var profesor = from p in _context.Usuarios
+//                     where p.IdUsuario == idProf
+//                     select p;
+//    string NombreProf = profesor.First().Nombre;
 
-            //} 
+//} 
