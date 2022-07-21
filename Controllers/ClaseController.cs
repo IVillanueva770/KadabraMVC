@@ -20,10 +20,20 @@ namespace KadabraMVC.Controllers
         }
 
 
-        public async Task<IActionResult> AdminClasesIndex()
+        public async Task<IActionResult> AdminClasesIndex(DayOfWeek filtro)
         {
-            var Clases = _context.Clases;
-            return View(await Clases.ToListAsync());
+
+
+            var Clases = _context.Clases //aca tengo todas las clases
+                                         //.Where(c => c.HorarioClase.DayOfWeek.ToString() == filtro.ToString()) //aca tengo las clases del día que me piden
+                            .Where(c => c.HorarioClase.Day > DateTime.Today.Day)
+                            .ToListAsync(); //aca me encargo de que no muestre clases que ya pasaron
+            var dia = DateTime.Today.DayOfWeek.ToString();
+
+
+
+
+            return View(await Clases);
         }
         public IActionResult FormAdminAddClase()
         {
@@ -61,6 +71,50 @@ namespace KadabraMVC.Controllers
             }
 
         }
+
+        #region DiasSemana
+        public async void Lunes()
+        {
+
+            await AdminClasesIndex(DayOfWeek.Monday);
+        }
+
+        public async void Martes()
+        {
+            await AdminClasesIndex(DayOfWeek.Tuesday);
+        }
+
+        public async void Miercoles()
+        {
+
+            await AdminClasesIndex(DayOfWeek.Wednesday);
+        }
+
+        public async void Jueves()
+        {
+
+            await AdminClasesIndex(DayOfWeek.Thursday);
+        }
+
+        public async void Viernes()
+        {
+
+            await AdminClasesIndex(DayOfWeek.Friday);
+        }
+        #endregion
+
+        #region VistasDePrueba
+        public IActionResult NegativoVistaDePrueba()
+        {
+            return View();
+        }
+
+        public IActionResult PositivoVistaDePrueba()
+        {
+            return View();
+        }
+        #endregion
+
 
     }
 }

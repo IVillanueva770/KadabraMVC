@@ -27,7 +27,7 @@ namespace KadabraMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var UsuarioLogin = new Usuario()
+                var UsuarioLogin = new Usuario() //paso de LoginViewModel a Usuario
                 {
                     Mail = model.Mail,
                     Contraseña = model.Contraseña,
@@ -39,14 +39,16 @@ namespace KadabraMVC.Controllers
 
                 if (UsuariosQueCoinciden.Any()) //Si devolvió algún usuario, Establezco ese usuario como mi usuario actual global.
                 {
-
                     UsuarioLogin = UsuariosQueCoinciden.First();
                     ViewBag.UsuarioActual = UsuarioLogin;
-
+                    Response.Cookies.Append("UsuarioActual", UsuarioLogin.IdUsuario.ToString());
 
                     Thread.Sleep(500); //TODO: Aca falta terminar de acomodar la vista modal.
                     if (UsuarioLogin.Tipo.ToString() == "Administrativo")
                     {
+
+                        Response.Cookies.Append("Usuario", UsuarioLogin.IdUsuario.ToString());
+
                         return Redirect(nameof(InicioAdministrativo));
                     }
                     else if (UsuarioLogin.Tipo.ToString() == "Profesor")
@@ -85,10 +87,26 @@ namespace KadabraMVC.Controllers
             return View();
         }
 
-        public IActionResult InicioProfesor()
+        public async Task<IActionResult> InicioProfesor()
         {
-            return View();
+            int idProfesor = 23; //aca meto el id del usuario actual
+            ViewBag.TipoUsuarioActual = idProfesor;
+            var Clases = _context.Clases.Where(c => c.IdProfesor == idProfesor).ToListAsync();
+            return View(await Clases);
         }
+
+        public async Task<IActionResult> ProfesorHistorial()
+        {
+            int idProfesor = 23; //aca meto el id del usuario actual
+            ViewBag.TipoUsuarioActual = idProfesor;
+            var Clases = _context.Clases.Where(c => c.IdProfesor == idProfesor)
+                .Where(c => c.HorarioClase.Day > DateTime.Today.Day)
+                .ToListAsync();
+            return View(await Clases);
+        }
+
+
+
         public IActionResult UsuarioSinTipo()
         {
             return View();
@@ -128,46 +146,8 @@ namespace KadabraMVC.Controllers
 
         #endregion
 
-        //#region DiasSemana
-        //public void Lunes()
-        //{
-        //    ViewBag.Prueba = "Lunes";
-        //}
-
-        //public void Martes()
-        //{
-        //    ViewBag.Prueba = "Martes";
-        //}
-
-        //public void Miercoles()
-        //{
-        //    ViewBag.Prueba = "Miercoles";
-        //}
-
-        //public void Jueves()
-        //{
-        //    ViewBag.Prueba = "Jueves";
-        //}
-
-        //public void Viernes()
-        //{
-        //    ViewBag.Prueba = "Viernes";
-        //}
-        //#endregion
-
-        //#region VistasDePrueba
-        //public IActionResult NegativoVistaDePrueba()
-        //{
-        //    return View();
-        //}
-
-        //public IActionResult PositivoVistaDePrueba()
-        //{
-        //    return View();
-        //}
-        //#endregion
-
         #region AdminProfesores
+
         public async Task<IActionResult> AdminProfesoresIndex()
         {
             var Profesores = await _context.Usuarios.Where(m => m.Tipo == "Profesor").ToListAsync();
@@ -214,7 +194,68 @@ namespace KadabraMVC.Controllers
         }
 
 
+        public IActionResult UsuarioPerfil()
+        {
+            var id = 21; //acá tengo que hacer aparecer el id del usuario actual 
+            Usuario userAMostrar = _context.Usuarios.Where(b => b.IdUsuario == id).First();
 
+            return View(userAMostrar);
+        }
+
+        public IActionResult UsuarioClasesIndex()
+        {
+
+            return View();
+        }
+        public IActionResult SuscripcionAlumnos()
+        {
+            int id = 21; //acá tengo que hacer aparecer el id del usuario actual 
+            var pagoaux = _context.Pagos.Where(b => b.IdAlumno == id).FirstOrDefault();
+            if (pagoaux == null)
+            {
+                ViewBag.EstadoSuscripcion = "No existe un ultimo pago registrado";
+                ViewBag.UltimoPagoRegistrado = "No existe un ultimo pago registrado";
+                ViewBag.UltimoMesActivo = "No existe un ultimo pago registrado";
+            }
+            else
+            {
+
+                var DiasTranscurridos = (DateTime.Now - pagoaux.FyHRegistro).Days;
+
+                if (DiasTranscurridos > 30 * pagoaux.CantidadMesesPagados)
+                {
+                    ViewBag.EstadoSuscripcion = "Vencido";
+                }
+                else if (DiasTranscurridos > 25 * pagoaux.CantidadMesesPagados && DiasTranscurridos < 30 * pagoaux.CantidadMesesPagados)
+                {
+                    ViewBag.EstadoSuscripcion = "Proximo a vencer";
+                }
+                else
+                {
+                    ViewBag.EstadoSuscripcion = "Activo";
+                }
+
+                ViewBag.UltimoPagoRegistrado = pagoaux.FyHRegistro;
+                ViewBag.UltimoMesActivo = pagoaux.MesPagado;
+            }
+            return View(pagoaux);
+        }
+
+        public async Task<IActionResult> UsuarioAsistencias()
+        {
+            int idUsuario = 21;
+            var Asistencias = _context.Asistencias
+                .Where(c => c.IdAsistencia == idUsuario)
+                //.Include(c => c.IdClaseNavigation.HorarioClase)
+                .ToListAsync();
+            return View(await Asistencias);
+        }
+
+        public async Task<IActionResult> AdminPagosIndex()
+        {
+            var pagos = _context.Pagos.ToListAsync();
+            return View(await pagos);
+        }
 
 
 

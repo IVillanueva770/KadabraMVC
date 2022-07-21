@@ -1,27 +1,7 @@
 ﻿@model List<Clase>
-@*esto va a tener que ser un viewmodel*@
 
 
-<h1>Bienvenido profesor</h1>
-
-<div class="d-flex 4 justify-content-center" style="margin: 50px auto ">
-    @*<form asp-action="InicioProfesor">
-        <button class="btn btn-outline-info" style="">
-            Clases de hoy 
-        </button>
-    </form>*@
-    <form asp-action="UsuarioPerfil" asp-controller="Usuario">
-        <button class="btn btn-outline-info">
-            Perfil
-        </button>
-    </form>
-    <form asp-action="ProfesorHistorial" asp-controller="Usuario">
-        <button class="btn btn-outline-info">
-            Historial
-        </button>
-    </form>
-</div>
-
+<h1>Historial</h1>
 
 <div class="container">
     <table class="table table-hover" style="max-width:1000px; margin:50px auto; ">
@@ -56,7 +36,9 @@
         </tbody>
     </table>
 
-</div>
-<div>
-    <button class="btn btn-outline-danger">Salir </button>
+    <form action="InicioProfesor">
+        <span class="d-flex justify-content-center">
+            <button class="btn btn-outline-dark">Volver</button>
+        </span>
+    </form>
 </div>

@@ -24,14 +24,14 @@ namespace KadabraMVC.Models
         public virtual DbSet<RegistroDeClase> RegistroDeClases { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=Nacho\\SQLEXPRESS; Database=KadabraHC; Trusted_Connection=True;");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=Nacho\\SQLEXPRESS; Database=KadabraHC; Trusted_Connection=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -133,7 +133,7 @@ namespace KadabraMVC.Models
             modelBuilder.Entity<Pago>(entity =>
             {
                 entity.HasKey(e => e.IdPago)
-                    .HasName("PK__Pagos__BD2295AD1CA3C54F");
+                    .HasName("PK__Pagos__BD2295AD057F643F");
 
                 entity.Property(e => e.IdPago).HasColumnName("idPago");
 
@@ -149,32 +149,20 @@ namespace KadabraMVC.Models
                 entity.Property(e => e.IdAlumno).HasColumnName("idAlumno");
 
                 entity.Property(e => e.MesPagado)
-                    .HasMaxLength(1)
+                    .HasMaxLength(15)
                     .IsUnicode(false)
                     .HasColumnName("Mes_Pagado");
-
-                entity.HasOne(d => d.IdAdministrativoNavigation)
-                    .WithMany(p => p.PagoIdAdministrativoNavigations)
-                    .HasForeignKey(d => d.IdAdministrativo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Pagos_Administrativos");
-
-                entity.HasOne(d => d.IdAlumnoNavigation)
-                    .WithMany(p => p.PagoIdAlumnoNavigations)
-                    .HasForeignKey(d => d.IdAlumno)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Pagos_Alumnos");
             });
 
             modelBuilder.Entity<Plane>(entity =>
             {
                 entity.HasKey(e => e.IdPlan)
-                    .HasName("PK__Planes__BECFB996778882F4");
+                    .HasName("PK__Planes__BECFB996100C956F");
 
                 entity.Property(e => e.IdPlan).HasColumnName("idPlan");
 
                 entity.Property(e => e.NombrePlan)
-                    .HasMaxLength(1)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PrecioMensual)

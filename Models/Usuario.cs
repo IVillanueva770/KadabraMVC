@@ -11,8 +11,6 @@ namespace KadabraMVC.Models
             AsistenciaIdAlumnoNavigations = new HashSet<Asistencia>();
             AsistenciaIdProfesorNavigations = new HashSet<Asistencia>();
             Clases = new HashSet<Clase>();
-            PagoIdAdministrativoNavigations = new HashSet<Pago>();
-            PagoIdAlumnoNavigations = new HashSet<Pago>();
             RegistroDeClases = new HashSet<RegistroDeClase>();
         }
 
@@ -33,8 +31,6 @@ namespace KadabraMVC.Models
         public virtual ICollection<Asistencia> AsistenciaIdAlumnoNavigations { get; set; }
         public virtual ICollection<Asistencia> AsistenciaIdProfesorNavigations { get; set; }
         public virtual ICollection<Clase> Clases { get; set; }
-        public virtual ICollection<Pago> PagoIdAdministrativoNavigations { get; set; }
-        public virtual ICollection<Pago> PagoIdAlumnoNavigations { get; set; }
         public virtual ICollection<RegistroDeClase> RegistroDeClases { get; set; }
     }
 }

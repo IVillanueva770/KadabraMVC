@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="ModeloAux\" />
-    <Folder Include="Views\Usuario\Admin\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿
 
-<div class="d-flex justify-content-center">
+@*<div class="d-flex justify-content-center">
     <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
         <form asp-action="Lunes">
             <div class="btn-group">
@@ -31,20 +31,34 @@
             <button asp-action=Lunes type="button" onclick="Render" class="btn btn-outline-info ">Lunes prueba</button>
         </div>
     </div>
+</div>*@
+
+<div class="d-flex justify-content-end">
+    <button>Salir</button>
+</div>
 
 
-    <div class="d-flex justify-content-end">
-        <button>Salir</button>
-    </div>
+<div class="d-flex 4 justify-content-center">
+    <form asp-action="UsuarioPerfil">
+        <button class="btn btn-outline-info">
+            Perfil
+        </button>
+    </form>
+    <form asp-action="UsuarioClasesIndex" asp-controller="Clase">
+        <button class="btn btn-outline-info">
+            Clases
+        </button>
+    </form>
+    <form asp-action="SuscripcionAlumnos">
+        <button class="btn btn-outline-info">
+            Mi suscripción
+        </button>
+    </form>
+    <form asp-action="UsuarioAsistencias" >
+        <button class="btn btn-outline-info">
+            Mis asistencias
+        </button>
+    </form>
 
 
 </div>
-<br />
-<br />
-<br />
-<br />
-<br />
-<h1 class=" align-content-center align-self-center d-flex justify-content-center">TABLA</h1>
-<h1 class=" align-content-center align-self-center d-flex justify-content-center">@ViewBag.Prueba</h1>
-
-

@@ -1,0 +1,87 @@
+﻿@model Usuario
+
+<div class="form row justify-content-center">
+
+    <h1>Mis datos</h1>
+    <hr />
+    <div class="col-md-4">
+
+
+
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Nombre</label>
+                <input type="email" class="form-control" value="@Model.Nombre" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Apellido</label>
+                <input type="text" class="form-control" value="@Model.Apellido" disabled>
+            </div>
+
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Direccion</label>
+                <input type="text" class="form-control" value="@Model.Direccion" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" value="@Model.Mail" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Dni</label>
+                <input type="text" class="form-control" value="@Model.Dni" disabled>
+            </div>
+            <div class="col-12">
+                <label for="inputAddress2" class="form-label">Mi Contraseña</label>
+                <input type="password" class="form-control" value="@Model.Contraseña" disabled id="myInput">
+                <p style="margin: 10px auto"> <input class="form-check-input" type="checkbox" onclick="myFunction()"> Mostrar</p>
+
+
+            </div>
+            <div class="col-6">
+                <label for="inputAddress" class="form-label">Telefono</label>
+                <input type="text" class="form-control" value="@Model.Telefono" disabled>
+            </div>
+            <div class="col-6">
+                <label for="inputAddress" class="form-label">Fecha de Alta</label>
+                <input type="text" class="form-control" value="@Model.FechaDeAlta" disabled>
+            </div>
+
+        </form>
+
+        <hr />
+
+        @if (ViewBag.TipoUsuarioActual == "Alumno")
+        {
+            <form>
+                <span class="d-flex justify-content-center">
+                    <button class="btn btn-outline-primary" asp-action="InicioAlumno">Volver</button>
+                </span>
+            </form>
+        }
+        @if (ViewBag.TipoUsuarioActual == "Profesor")
+        {
+            <form>
+                <span class="d-flex justify-content-center">
+                    <button class="btn btn-outline-primary" asp-action="InicioProfesor">Volver</button>
+                </span>
+            </form>
+        }
+    </div>
+</div>
+
+@*@Html.Partial("_Modal")
+
+<partial name="_Modal"></partial>
+los dos funcionan
+*@
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

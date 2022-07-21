@@ -1,0 +1,57 @@
+﻿@model List<Pago>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora de registro</th>
+            <th>Alumno</th>
+            <th>Cargado por</th>
+            <th>Monto</th>
+            <th>Mes Pagado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var pago in Model)
+        {
+            <tr>
+                @{
+                    string Fecha = pago.FyHRegistro.Day.ToString() + "/" + pago.FyHRegistro.Month.ToString();
+                    string Hora = pago.FyHRegistro.Hour.ToString() + ":" + pago.FyHRegistro.Minute.ToString();
+                }
+                <td>@Fecha</td>
+                <td>@Hora</td>
+                
+                <td>NombreAlumno Apellido</td>
+                <td>NombreAdministrativo Apellido</td>
+
+                <td>@Html.DisplayFor(p => pago.Monto)</td>
+                <td>@Html.DisplayFor(m=>pago.MesPagado)</td>
+
+
+
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div class="table">
+    <form asp-action="InicioAdministrativo" asp-controller="Usuario">
+        <div class="d-flex justify-content-start">
+            <button class="btn btn-outline-info">Volver</button>
+        </div>
+    </form>
+
+
+    <div class="d-flex justify-content-end">
+        <form asp-action="FormAdminAddPago" asp-controller="Pago">
+            <button class="btn btn-info">Agregar Pago</button>
+        </form>
+    </div>
+</div>
+
+

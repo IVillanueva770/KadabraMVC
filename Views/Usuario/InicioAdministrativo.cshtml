@@ -6,11 +6,13 @@
             Profesores
         </button>
     </form>
-    <form asp-action="AdminClasesIndex" asp-controller="Clase" >
+
+    <form asp-action="AdminClasesIndex" asp-controller="Clase" asp-route-filtro="@DateTime.Today.DayOfWeek"> @*el nombre que va dsp de route- es indiferente*@
         <button class="btn btn-outline-info">
             Clases
         </button>
     </form>
+
     <form asp-action="AdminAlumnosIndex" >
         <button class="btn btn-outline-info">
             Alumnos
@@ -19,6 +21,11 @@
     <form asp-action="AdminPlanesIndex" asp-controller="Plane">
         <button class="btn btn-outline-info">
             Aranceles
+        </button>
+    </form>
+    <form asp-action="AdminPagosIndex" asp-controller="Usuario">
+        <button class="btn btn-outline-info">
+            Pagos
         </button>
     </form>
 
