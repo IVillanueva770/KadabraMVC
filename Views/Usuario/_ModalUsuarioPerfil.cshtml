@@ -1,0 +1,89 @@
+﻿@model Usuario
+
+<form method="post" asp-action="Index" asp-controller="Home">
+    <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog alert-success" role="document">
+            <div class="modal-content ">
+
+
+                <div class="modal-header">
+                    <h5 class="modal-title ">¡Registro Exitoso!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        @*este es la cruz de arriba a la derecha*@
+                        <span aria-hidden="true">&times;</span> @*Capaz tenga que quitarle el data-dismiss y ponerle un asp-for que te redirija a la pagina de inicio*@
+                    </button>
+                </div>
+
+
+
+                <div class="modal-body">
+                    <div class="alert alert-secondary" role="alert">
+                        <div class="accept-policy">Te has registrado correctamente.</div>
+
+
+
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Nombre</label>
+                                <input type="email" class="form-control" value="@Model.Nombre" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" value="@Model.Apellido" disabled>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Direccion</label>
+                                <input type="text" class="form-control" value="@Model.Direccion" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" value="@Model.Mail" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Dni</label>
+                                <input type="text" class="form-control" value="@Model.Dni" disabled>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress2" class="form-label">Mi Contraseña</label>
+                                <input type="password" class="form-control" value="@Model.Contraseña" disabled id="myInput">
+                                <p style="margin: 10px auto"> <input class="form-check-input" type="checkbox" onclick="myFunction()"> Mostrar</p>
+
+
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Telefono</label>
+                                <input type="text" class="form-control" value="@Model.Telefono" disabled>
+                            </div>
+                            <div class="col-6">
+                                <label for="inputAddress" class="form-label">Fecha de Alta</label>
+                                <input type="text" class="form-control" value="@Model.FechaDeAlta" disabled>
+                            </div>
+
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>

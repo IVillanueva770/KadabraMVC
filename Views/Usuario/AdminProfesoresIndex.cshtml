@@ -12,14 +12,16 @@
     </thead>
 
     <tbody>
-        @foreach (var profesor in @Model)
+        <form>
+        @foreach (var profesor in Model)
         {
             <tr>
                 <td>@Html.DisplayFor(m=>profesor.Nombre) @Html.DisplayFor(m=>profesor.Apellido)</td>
                 <td>@Html.DisplayFor(m=>profesor.FechaDeAlta)</td>
-                <td> <input class="btn btn-outline-info" type="button" value="Detalle" /> </td>
+                <td> <input class="btn btn-outline-info" type="button" value="Detalle" data-toggle="modal" data-target="#exampleModal"/> </td>
             </tr>
         }
+        </form>
     </tbody>
 </table>
 
@@ -38,7 +40,46 @@
     </form>
 </div>
 <hr />
-<br />
-<h1>Posibilidades</h1>
-<p>Aca puedo hacer que aparezca una ventana modal y tome los datos</p>
-<p>Sino que te lleve a otra ventana con un formulario de carga y nv</p>
+
+
+
+
+
+
+
+
+<div>
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />*@
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+
+    <form method="post" asp-action="Index" asp-controller="Home">
+        <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog alert-success" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title ">¡Registro Exitoso!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            @*este es la cruz de arriba a la derecha*@
+                            <span aria-hidden="true">&times;</span> @*Capaz tenga que quitarle el data-dismiss y ponerle un asp-for que te redirija a la pagina de inicio*@
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success" role="alert">
+                            <div class="accept-policy">Te has registrado correctamente.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+

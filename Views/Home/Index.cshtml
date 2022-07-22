@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center text-success" style="margin:50px auto 100px auto">
+<div class="text-center text-success" style="margin:30px auto 50px auto">
     <h1 class="display-4">Kadabra Training Club</h1>
     <p class="text-muted">Health, Fitness & Performance - Aprendé a moverte, divertite y creá nuevos hábitos</p>
 </div>
@@ -30,17 +30,19 @@
     </div>
 </div>
 
-<form>
-    <div class="position-absolute top-50 start-50 translate-middle" style="margin:100px auto">
+<div id="boton">
+    <form>
+        <div class="position-absolute top-75 start-50 translate-middle" style="margin:100px auto">
 
-        <span class="" style="margin:200px 50px 50px ">
-            <button class="btn btn-outline-success btn-lg" asp-area="" asp-controller="Usuario" asp-action="IndexLogin"><p class="h3">Ingresar</p></button>
-        </span>
+            <span class="" style="margin:200px 50px 50px ">
+                <button class="btn btn-outline-success btn-lg" asp-area="" asp-controller="Usuario" asp-action="IndexLogin"><p class="h4">Ingresar</p></button>
+            </span>
 
-        <span class="" style="margin:auto 50px 50px ">
-            <button class="btn btn-success btn-lg" asp-area="" asp-controller="Usuario" asp-action="IndexRegistro"><p class="h3">Registrarse</p></button>
-        </span>
+            <span class="" style="margin:auto 50px 50px ">
+                <button class="btn btn-success btn-lg" asp-area="" asp-controller="Usuario" asp-action="IndexRegistro"><p class="h4">Registrarse</p></button>
+            </span>
 
 
-    </div>
-</form>
+        </div>
+    </form>
+</div>

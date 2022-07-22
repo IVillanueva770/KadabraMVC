@@ -2,36 +2,31 @@
 
 
 <h1>Ultima suscripción registrada</h1>
-
-<div class="form row justify-content-center">
-    <div class="col-md-4">
-
-        <div>
-            <p>Estado de mi suscripción: @ViewBag.EstadoSuscripcion </p> 
+<br />
+<div style="display:flex; flex-direction:column; justify-content:space-around; align-items:center;">
+    <form class="col-md-4 rounded modal-body" style="background-color:rgb(242, 255, 252, 0.8);border:2px solid black">
+        <div class="col-md-12">
+            <label class="form-label">Estado de mi suscripción: </label>
+            <input type="email" class="form-control" value="@ViewBag.EstadoSuscripcion" disabled>
         </div>
+        <br />
 
-
-
-        <div>
-            <p>Ultimo pago registrado: @ViewBag.UltimoPagoRegistrado</p>
-            
+        <div class="col-md-12">
+            <label class="form-label">Ultimo pago registrado: </label>
+            <input type="email" class="form-control" value="@ViewBag.UltimoPagoRegistrado" disabled>
         </div>
+        <br />
 
-
-        <div>
-            <p>Ultimo mes activo: @ViewBag.UltimoMesActivo</p>
-            
+        <div class="col-md-12">
+            <label class="form-label">Ultimo mes activo: </label>
+            <input type="email" class="form-control" value="@ViewBag.UltimoMesActivo" disabled>
         </div>
-
+        <br />
 
         <form>
             <div class="d-flex justify-content-center">
                 <button class="btn btn-outline-primary" asp-action="InicioAlumno">Volver</button>
             </div>
         </form>
-
-        
-
-
-    </div>
+    </form>
 </div>

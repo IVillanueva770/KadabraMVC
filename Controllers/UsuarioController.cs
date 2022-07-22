@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Dynamic;
+using System.Net;
+using System.Net.Mail;
 
 namespace KadabraMVC.Controllers
 {
@@ -121,7 +123,6 @@ namespace KadabraMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-
                 return View();
             }
 
@@ -140,11 +141,41 @@ namespace KadabraMVC.Controllers
 
             _context.Add(NuevoUsuario);
             await _context.SaveChangesAsync();
+
+            //Crea el mail
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress("ignavillanueva961@saltacompra.gob.ar");
+            mensaje.To.Add(NuevoUsuario.Mail);
+            mensaje.Subject = "Confirmación";
+            Random generator = new Random();
+            String rnd = generator.Next(0, 1000000).ToString("D6");
+            mensaje.Body = "Su código de verificacion es: " + rnd;
+            mensaje.IsBodyHtml = false;
+
+            //Manda el mail de confirmacion
+            SmtpClient smtp = new SmtpClient();
+            smtp.UseDefaultCredentials = false;
+            smtp.Host = "smtp.gmail.com";
+            NetworkCredential credenciales = new NetworkCredential();
+            credenciales.UserName = "ignavillanueva961@gmail.com";
+            credenciales.Password = "jeofohjxnwgdmsyj";
+            smtp.Credentials = credenciales;
+            smtp.Port = 25;
+            smtp.EnableSsl = true;
+            smtp.Send(mensaje);
+
             return Redirect(nameof(InicioAlumno));
 
         }
 
         #endregion
+
+
+
+
+
+
+
 
         #region AdminProfesores
 

@@ -14,5 +14,13 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url('layered-peaks-haikei.svg');
+    background-position:center;
+    background-repeat:no-repeat;
+    /*background-size:contain;*/
+}
+
+text {
+    background-color: rgb(71, 219, 144, 0.1)
 }

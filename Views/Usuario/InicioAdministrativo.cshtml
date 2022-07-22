@@ -1,33 +1,102 @@
 ﻿
 <h1>Inicio Administrativo</h1>
-<div class="d-flex 4 justify-content-center">
-    <form asp-action="AdminProfesoresIndex">
-        <button class="btn btn-outline-info">
-            Profesores
-        </button>
-    </form>
-
-    <form asp-action="AdminClasesIndex" asp-controller="Clase" asp-route-filtro="@DateTime.Today.DayOfWeek"> @*el nombre que va dsp de route- es indiferente*@
-        <button class="btn btn-outline-info">
-            Clases
-        </button>
-    </form>
-
-    <form asp-action="AdminAlumnosIndex" >
-        <button class="btn btn-outline-info">
-            Alumnos
-        </button>
-    </form>
-    <form asp-action="AdminPlanesIndex" asp-controller="Plane">
-        <button class="btn btn-outline-info">
-            Aranceles
-        </button>
-    </form>
-    <form asp-action="AdminPagosIndex" asp-controller="Usuario">
-        <button class="btn btn-outline-info">
-            Pagos
-        </button>
-    </form>
+    <div class="rounded " style="margin:auto; max-width:100px; display:flex; flex-direction:column; justify-content:space-around; align-items:center;
+height:300px; /*border: 5px solid*/;">
 
 
+        <form asp-action="AdminProfesoresIndex">
+            <button class="btn btn-outline-info text-black">
+                Profesores
+            </button>
+        </form>
+
+        <form asp-action="AdminClasesIndex" asp-controller="Clase" asp-route-filtro="@DateTime.Today.DayOfWeek">
+            @*el nombre que va dsp de route- es indiferente*@
+            <button class="btn btn-outline-info text-black">
+                Clases
+            </button>
+        </form>
+
+        <form asp-action="AdminAlumnosIndex">
+            <button class="btn btn-outline-info text-black">
+                Alumnos
+            </button>
+        </form>
+        <form asp-action="AdminPlanesIndex" asp-controller="Plane">
+            <button class="btn btn-outline-info text-black">
+                Aranceles
+            </button>
+        </form>
+        <form asp-action="AdminPagosIndex" asp-controller="Usuario">
+            <button class="btn btn-outline-info text-black">
+                Pagos
+            </button>
+        </form>
+    </div>
 </div>
+
+
+@*
+    <table class="">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+
+                <td>
+                    <form asp-action="AdminProfesoresIndex">
+                        <button class="btn btn-outline-info">
+                            Profesores
+                        </button>
+                    </form>
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td>
+                    <form asp-action="AdminClasesIndex" asp-controller="Clase" asp-route-filtro="@DateTime.Today.DayOfWeek">
+                        <button class="btn btn-outline-info">
+                            Clases
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <td>
+            <form asp-action="AdminAlumnosIndex">
+                <button class="btn btn-outline-info">
+                    Alumnos
+                </button>
+            </form>
+        </td>
+
+        <tr>
+            <td>
+                <form asp-action="AdminPlanesIndex" asp-controller="Plane">
+                    <button class="btn btn-outline-info">
+                        Aranceles
+                    </button>
+                </form>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <form asp-action="AdminPagosIndex" asp-controller="Usuario">
+                    <button class="btn btn-outline-info">
+                        Pagos
+                    </button>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+        </tr>
+
+        </tbody>
+    </table>*@

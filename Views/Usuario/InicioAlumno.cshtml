@@ -1,6 +1,4 @@
-﻿
-
-@*<div class="d-flex justify-content-center">
+﻿@*<div class="d-flex justify-content-center">
     <div class="btn-group btn-group-justified" role="group" aria-label="Basic example">
         <form asp-action="Lunes">
             <div class="btn-group">
@@ -34,28 +32,28 @@
 </div>*@
 
 <div class="d-flex justify-content-end">
-    <button>Salir</button>
+    <button class="btn btn-outline-danger">Salir</button>
 </div>
 
-
-<div class="d-flex 4 justify-content-center">
+<div class="rounded " style="margin:auto; max-width:200px; display:flex; flex-direction:column; justify-content:space-around; align-items:center;
+height:300px;">
     <form asp-action="UsuarioPerfil">
-        <button class="btn btn-outline-info">
+        <button class="btn btn-outline-info text-black">
             Perfil
         </button>
     </form>
     <form asp-action="UsuarioClasesIndex" asp-controller="Clase">
-        <button class="btn btn-outline-info">
+        <button class="btn btn-outline-info text-black">
             Clases
         </button>
     </form>
     <form asp-action="SuscripcionAlumnos">
-        <button class="btn btn-outline-info">
+        <button class="btn btn-outline-info text-black">
             Mi suscripción
         </button>
     </form>
-    <form asp-action="UsuarioAsistencias" >
-        <button class="btn btn-outline-info">
+    <form asp-action="UsuarioAsistencias">
+        <button class="btn btn-outline-info text-black">
             Mis asistencias
         </button>
     </form>
